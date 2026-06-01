@@ -1,0 +1,12 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff45b5"/><stop offset="1" stop-color="#c81e84"/></linearGradient>
+    <linearGradient id="p" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b6cff"/><stop offset="1" stop-color="#3d7fe6"/></linearGradient>
+    <linearGradient id="c" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#36d0f0"/><stop offset="1" stop-color="#9fe9ff"/></linearGradient>
+    <linearGradient id="n" x1="0.1" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#0c2540"/><stop offset="0.55" stop-color="#15375e"/><stop offset="1" stop-color="#2e7fc2"/></linearGradient>
+  </defs>
+  <ellipse cx="32" cy="32" rx="9.5" ry="18" fill="url(#p)" transform="rotate(38 32 32)"/>
+  <ellipse cx="32" cy="32" rx="9.5" ry="18" fill="url(#m)" transform="rotate(-38 32 32)"/>
+  <ellipse cx="30" cy="40" rx="7" ry="13" fill="url(#c)" transform="rotate(8 32 32)"/>
+  <ellipse cx="32" cy="32" rx="22" ry="8.6" fill="url(#n)" transform="rotate(-28 32 32)"/>
+</svg>

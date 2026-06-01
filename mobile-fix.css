@@ -1,0 +1,302 @@
+/* ============================================================
+   FINEXA — RESPONSIVE FIX v3
+   Fixes: desktop dropdown, mobile nav, layout generale
+   ============================================================ */
+
+/* GLOBAL: nessun overflow orizzontale */
+html, body { overflow-x: hidden; }
+
+/* ══════════════════════════════════════════════════════════
+   1. DESKTOP DROPDOWN MENU — sfondo solido (fix principale)
+   Il dropdown usa .glass che è 70% trasparente → hero visibile
+   ══════════════════════════════════════════════════════════ */
+
+/* Il dropdown "Prodotto" e "Soluzioni" */
+header nav .glass {
+  background: var(--background, #ffffff) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Dark/Natural theme */
+[data-theme="dark"] header nav .glass {
+  background: var(--background, #060a14) !important;
+}
+[data-theme="natural"] header nav .glass {
+  background: var(--background, #efe7da) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   2. NAVBAR DESKTOP — aspetto invariato (≥1024px)
+   Non toccare il pill shape e le animazioni su desktop
+   ══════════════════════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+  /* La nav pill desktop rimane esattamente com'era */
+  header.fixed {
+    padding: 12px !important;
+  }
+  header.fixed > nav {
+    border-radius: 1rem !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   3. TABLET (640px–1023px) — comportamento ibrido
+   ══════════════════════════════════════════════════════════ */
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* Nav pill rimane ma leggermente più compatta */
+  header.fixed {
+    padding: 8px 12px !important;
+  }
+  /* Footer grid: 2 colonne */
+  .grid.grid-cols-1.gap-12.lg\:grid-cols-\[1\.4fr_1fr_1fr_1fr_1fr\] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+  .grid.grid-cols-1.gap-12.lg\:grid-cols-\[1\.4fr_1fr_1fr_1fr_1fr\] > div:first-child {
+    grid-column: 1 / -1 !important;
+  }
+  /* Partnership */
+  .mt-14.grid.gap-6.lg\:grid-cols-\[1fr_auto_1fr\] {
+    grid-template-columns: 1fr !important;
+  }
+  .flex.flex-col.items-center.justify-center.px-4 {
+    flex-direction: row !important;
+    gap: 12px !important;
+    padding: 10px 0 !important;
+  }
+  .mt-3.text-center.text-\[11px\] { margin-top: 0 !important; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   4. MOBILE (≤639px) — fix completo
+   ══════════════════════════════════════════════════════════ */
+
+@media (max-width: 639px) {
+
+  /* ── NAVBAR MOBILE ─────────────────────────────────── */
+
+  /* Header: diventa barra piena, niente pill floating */
+  header.fixed {
+    padding: 0 !important;
+    background-color: var(--background, #ffffff) !important;
+    border-bottom: 1px solid var(--border, #e2e8f0) !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+    z-index: 9999 !important;
+  }
+  [data-theme="dark"] header.fixed {
+    background-color: var(--background, #060a14) !important;
+  }
+  [data-theme="natural"] header.fixed {
+    background-color: var(--background, #efe7da) !important;
+  }
+
+  /* Nav: no pill, piena larghezza, sfondo solido */
+  header.fixed > nav {
+    border-radius: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    background-color: var(--background, #ffffff) !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-theme="dark"] header.fixed > nav {
+    background-color: var(--background, #060a14) !important;
+  }
+  [data-theme="natural"] header.fixed > nav {
+    background-color: var(--background, #efe7da) !important;
+  }
+
+  /* Contenitore logo + hamburger */
+  header.fixed > nav > div:first-child {
+    padding: 10px 16px !important;
+    max-width: 100% !important;
+  }
+
+  /* Menu mobile aperto (border-t) — sfondo solido */
+  header .border-t.border-border.lg\:hidden,
+  header .overflow-hidden.border-t {
+    background-color: var(--background, #ffffff) !important;
+    width: 100% !important;
+  }
+  [data-theme="dark"] header .border-t.border-border.lg\:hidden,
+  [data-theme="dark"] header .overflow-hidden.border-t {
+    background-color: var(--background, #060a14) !important;
+  }
+
+  /* ── HERO SECTION ──────────────────────────────────── */
+
+  /* Compensazione per la nav ora full-height (non floating) */
+  section:first-of-type > div:first-child {
+    padding-top: 5.5rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* H1 hero */
+  h1 {
+    font-size: clamp(26px, 8vw, 34px) !important;
+    line-height: 1.15 !important;
+  }
+
+  /* Testo grande hero */
+  p.text-lg { font-size: 15px !important; line-height: 1.65 !important; }
+  p.text-\[17px\] { font-size: 15px !important; }
+
+  /* Badge hero */
+  .rounded-full.border.border-border.bg-card\/60 {
+    font-size: 11px !important;
+    padding: 4px 12px !important;
+  }
+
+  /* Bottoni hero: stack verticale full-width */
+  .mt-9.flex.flex-col.items-center.justify-center.gap-3.sm\:flex-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .mt-9.flex.flex-col.items-center.justify-center.gap-3.sm\:flex-row a {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* ── DASHBOARD MOCKUP ──────────────────────────────── */
+  .glass.relative.mx-auto.mt-16 {
+    margin-top: 2rem !important;
+    padding: 8px !important;
+    border-radius: 16px !important;
+  }
+  .grid.grid-cols-2.gap-3.lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .mt-3.grid.grid-cols-1.gap-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── SEZIONI ───────────────────────────────────────── */
+  .py-20 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  .py-28 { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+  .md\:py-28 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  .px-5 { padding-left: 16px !important; padding-right: 16px !important; }
+
+  /* H2 */
+  h2.text-3xl { font-size: clamp(20px, 6vw, 26px) !important; line-height: 1.2 !important; }
+
+  /* ── COME FUNZIONA (3 col → 1) ─────────────────────── */
+  .mt-14.grid.gap-5.md\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── FEATURES (2 col → 1) ──────────────────────────── */
+  .mt-12.grid.gap-5.md\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── PERCHÉ FINEXA (4 benefit card → 1 col) ─────────── */
+  .grid.gap-4.sm\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── PARTNERSHIP (3 col → 1) ────────────────────────── */
+  .mt-14.grid.gap-6.lg\:grid-cols-\[1fr_auto_1fr\] {
+    grid-template-columns: 1fr !important;
+  }
+  .flex.flex-col.items-center.justify-center.px-4 {
+    flex-direction: row !important;
+    gap: 12px !important;
+    padding: 10px 0 !important;
+  }
+  .mt-3.text-center.text-\[11px\] { margin-top: 0 !important; }
+  /* Connettori linee orizzontali — nascondi su mobile */
+  .absolute.-left-24, .absolute.-right-24 { display: none !important; }
+
+  /* ── RECENSIONI ─────────────────────────────────────── */
+  .flex.flex-col.items-start.justify-between.gap-8.md\:flex-row {
+    flex-direction: column !important;
+  }
+  .inline-flex.items-center.gap-4.rounded-2xl.border.border-border.bg-card {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .flex.w-\[340px\].flex-shrink-0 {
+    width: 280px !important;
+  }
+  .overflow-hidden.\[mask-image\:linear-gradient\(90deg\,transparent\,\#000_8\%\,\#000_92\%\,transparent\)\] {
+    mask-image: linear-gradient(90deg, transparent, #000 2%, #000 98%, transparent) !important;
+  }
+
+  /* ── PREZZI ─────────────────────────────────────────── */
+  .mx-auto.mt-10.max-w-lg { max-width: 100% !important; }
+  .mt-7.flex.justify-center.gap-3 {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .mt-7.flex.justify-center.gap-3 a {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* ── FINANCE MATURITY (4 card → 1 col) ─────────────── */
+  .grid.gap-3.sm\:grid-cols-2 { grid-template-columns: 1fr !important; }
+
+  /* ── CTA FINALE ─────────────────────────────────────── */
+  .relative.overflow-hidden.rounded-3xl.border.border-border.bg-card.p-10 {
+    padding: 2rem 1.25rem !important;
+    border-radius: 16px !important;
+  }
+  h2.mx-auto.max-w-2xl {
+    font-size: clamp(20px, 6vw, 28px) !important;
+  }
+  .mt-8.flex.flex-col.items-center.justify-center.gap-3.sm\:flex-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .mt-8.flex.flex-col.items-center.justify-center.gap-3.sm\:flex-row a {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* ── FOOTER ─────────────────────────────────────────── */
+  .grid.grid-cols-1.gap-12.lg\:grid-cols-\[1\.4fr_1fr_1fr_1fr_1fr\] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .mt-12.flex.flex-col.items-start.justify-between.gap-3.border-t {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .mt-5.flex.max-w-xs.items-center.gap-2 { max-width: 100% !important; }
+  .py-16 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+
+  /* ── 404 ─────────────────────────────────────────────── */
+  .font-serif.text-\[120px\],
+  .font-serif.text-\[180px\] { font-size: 72px !important; }
+
+  /* ── BLOG / TEAM / ALTRE PAGINE ──────────────────────── */
+  .grid.gap-6.md\:grid-cols-2,
+  .grid.gap-6.md\:grid-cols-3,
+  .grid.gap-8.md\:grid-cols-2,
+  .grid.gap-8.md\:grid-cols-3 { grid-template-columns: 1fr !important; }
+  .grid.gap-8.sm\:grid-cols-2.lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ── TESTO GRADIENT COMPAT ───────────────────────────── */
+  .text-gradient {
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  /* ── BOTTONI: no whitespace overflow ─────────────────── */
+  a.whitespace-nowrap, button.whitespace-nowrap {
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+}
